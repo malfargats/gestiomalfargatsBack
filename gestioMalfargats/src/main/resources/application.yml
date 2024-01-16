@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: gestio-malfargats-service
+message: Salutacions Malfargats
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+message:  Salutacions Malfargats estem a produccio
+
