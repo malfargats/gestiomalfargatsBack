@@ -5,5 +5,5 @@ data class CastellDTO (
         val nom:String,
         val altura:Int,
         val dificultat:Int,
-        val castellersPerPis:Int,
+        val castellersPerPis:Int
 )
