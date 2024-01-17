@@ -4,6 +4,7 @@ import com.malfargats.gestio.dto.CastellDTO
 import com.malfargats.gestio.entity.Castell
 import com.malfargats.gestio.service.CastellService
 import org.springframework.http.HttpStatus
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -31,5 +32,15 @@ class CastellController(val castellService: CastellService) {
     @ResponseStatus(HttpStatus.OK)
     fun updateCastell(@RequestBody castellDto: CastellDTO,@PathVariable("id") id:Long):CastellDTO{
         return castellService.updateCastell(castellDto,id);
+    }
+    @GetMapping("/{id}")
+    fun getCastell(@PathVariable("id") id: Long):CastellDTO{
+        return castellService.getCastell(id);
+
+    }
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{id}")
+    fun deleteCastell(@PathVariable("id")id: Long){
+        return castellService.deleteCastell(id);
     }
 }

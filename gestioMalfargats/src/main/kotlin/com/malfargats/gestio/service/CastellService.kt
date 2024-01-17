@@ -43,4 +43,28 @@ class CastellService(val castellRepository: CastellRepository) {
         }
 
     }
+
+    fun getCastell(id: Long): CastellDTO {
+        val existingCastell: Optional<Castell> = castellRepository.findById(id)
+        return if(existingCastell.isPresent){
+            existingCastell.get().let {
+                CastellDTO(id = it.id,nom =it.nom, altura = it.altura, dificultat = it.dificultat, castellersPerPis = it.castellersPerPis)
+            }
+        }else{
+            throw CastellNotFoundException("No s'ha trobat castell amb id $id")
+        }
+    }
+
+    fun deleteCastell(id: Long){
+        val existingCastell: Optional<Castell> = castellRepository.findById(id)
+        return if(existingCastell.isPresent){
+            existingCastell.get().let {
+                castellRepository.deleteById(id)
+                
+            }
+        }else{
+            throw CastellNotFoundException("No s'ha trobat castell amb id $id")
+        }
+
+    }
 }
