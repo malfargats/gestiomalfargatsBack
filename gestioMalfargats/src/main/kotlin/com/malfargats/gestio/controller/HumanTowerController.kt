@@ -2,7 +2,9 @@ package com.malfargats.gestio.controller
 
 import com.malfargats.gestio.dto.HumanTowerDTO
 import com.malfargats.gestio.service.HumanTowerService
+import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
+import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -15,10 +17,11 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/v1/castells")
+@Validated
 class HumanTowerController(val castellService: HumanTowerService) {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun createHumanTowers(@RequestBody castellDto:HumanTowerDTO):HumanTowerDTO{
+    fun createHumanTowers(@RequestBody @Valid castellDto:HumanTowerDTO):HumanTowerDTO{
         return castellService.createHumanTower(castellDto);
 
     }
@@ -28,7 +31,7 @@ class HumanTowerController(val castellService: HumanTowerService) {
     }
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    fun updateHumanTower(@RequestBody castellDto: HumanTowerDTO,@PathVariable("id") id:Long):HumanTowerDTO{
+    fun updateHumanTower(@RequestBody @Valid castellDto: HumanTowerDTO,@PathVariable("id") id:Long):HumanTowerDTO{
         return castellService.updateHumanTower(castellDto,id);
     }
     @GetMapping("/{id}")

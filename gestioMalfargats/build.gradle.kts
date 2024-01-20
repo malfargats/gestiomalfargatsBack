@@ -7,6 +7,11 @@ plugins {
 	kotlin("plugin.spring") version "1.9.21"
 	kotlin("plugin.jpa") version "1.9.21"
 }
+allOpen {
+	annotation("jakarta.persistence.Entity")
+	annotation("jakarta.persistence.Embeddable")
+	annotation("jakarta.persistence.MappedSuperclass")
+}
 
 group = "com.malfargats"
 version = "0.0.1-SNAPSHOT"
