@@ -67,4 +67,11 @@ class HumanTowerService(val humanTowerRepository: HumanTowerRepository) {
         }
 
     }
+
+    fun getHumanTowersByName(name: String): List<HumanTowerDTO> {
+        return humanTowerRepository.findByNameContaining(name).map {
+            it->HumanTowerDTO(id = it.id,name =it.name, height = it.height, difficulty = it.difficulty, humanTowerBuildersPerFloor = it.humanTowerBuildersPerFloor)
+        }
+
+    }
 }
