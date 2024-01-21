@@ -22,8 +22,8 @@ import org.springframework.web.bind.annotation.RestController
 class HumanTowerController(val humanTowerService: HumanTowerService) {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun createHumanTowers(@RequestBody @Valid castellDto:HumanTowerDTO):HumanTowerDTO{
-        return humanTowerService.createHumanTower(castellDto);
+    fun createHumanTowers(@RequestBody @Valid humanTowerlDto:HumanTowerDTO):HumanTowerDTO{
+        return humanTowerService.createHumanTower(humanTowerlDto);
 
     }
     @GetMapping
@@ -32,8 +32,8 @@ class HumanTowerController(val humanTowerService: HumanTowerService) {
     }
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    fun updateHumanTower(@RequestBody @Valid castellDto: HumanTowerDTO,@PathVariable("id") id:Long):HumanTowerDTO{
-        return humanTowerService.updateHumanTower(castellDto,id);
+    fun updateHumanTower(@RequestBody @Valid humanTowerlDto: HumanTowerDTO,@PathVariable("id") id:Long):HumanTowerDTO{
+        return humanTowerService.updateHumanTower(humanTowerlDto,id);
     }
     @GetMapping("/{id}")
     fun getHumanTower(@PathVariable("id") id: Long):HumanTowerDTO {

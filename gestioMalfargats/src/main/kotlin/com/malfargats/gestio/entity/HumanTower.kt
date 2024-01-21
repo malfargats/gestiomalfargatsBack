@@ -7,9 +7,11 @@ import jakarta.persistence.*
 data class HumanTower(
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
-        val id: Long?,
+        var id: Long?,
         var name: String,
         var height: Int,
         var difficulty: Int,
-        var humanTowerBuildersPerFloor: Int
+        var humanTowerBuildersPerFloor: Int,
+        @OneToMany(targetEntity = HumanTowerPositionsConfig::class,mappedBy = "humanTower", cascade = [CascadeType.ALL], orphanRemoval = true)
+        var humanTowerPositionsConfig:  List<HumanTowerPositionsConfig>? = listOf()
 )
