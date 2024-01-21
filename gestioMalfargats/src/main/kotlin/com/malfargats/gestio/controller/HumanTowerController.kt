@@ -17,37 +17,32 @@ import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/v1/castells")
+@RequestMapping("/v1/humantowers")
 @Validated
-class HumanTowerController(val castellService: HumanTowerService) {
+class HumanTowerController(val humanTowerService: HumanTowerService) {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     fun createHumanTowers(@RequestBody @Valid castellDto:HumanTowerDTO):HumanTowerDTO{
-        return castellService.createHumanTower(castellDto);
+        return humanTowerService.createHumanTower(castellDto);
 
     }
     @GetMapping
     fun getAllHumanTowers():List<HumanTowerDTO>{
-        return castellService.getAllHumanTowers();
+        return humanTowerService.getAllHumanTowers();
     }
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     fun updateHumanTower(@RequestBody @Valid castellDto: HumanTowerDTO,@PathVariable("id") id:Long):HumanTowerDTO{
-        return castellService.updateHumanTower(castellDto,id);
+        return humanTowerService.updateHumanTower(castellDto,id);
     }
     @GetMapping("/{id}")
-    fun getHumanTower(@PathVariable("id") id: Long):HumanTowerDTO{
-        return castellService.getHumanTower(id);
-
-    }
-    @GetMapping()
-    fun getHumanTowers(@RequestParam("name")name:String):List<HumanTowerDTO>{
-        return castellService.getHumanTowersByName(name);
+    fun getHumanTower(@PathVariable("id") id: Long):HumanTowerDTO {
+        return humanTowerService.getHumanTower(id);
 
     }
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     fun deleteHumanTower(@PathVariable("id")id: Long){
-        return castellService.deleteHumanTower(id);
+        return humanTowerService.deleteHumanTower(id);
     }
 }
