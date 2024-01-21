@@ -5,7 +5,7 @@ import com.malfargats.gestio.entity.Position
 import jakarta.validation.constraints.NotBlank
 data class HumanTowerPositionsConfigDTO (
         var id:Long?,
-        @NotBlank(message = "HumanTowerPositionsConfigDTO.humanTowerId is mandatory")
+        @NotBlank(message = "HumanTowerPositionsConfigDTO.humanTower is mandatory")
         var humanTower:HumanTower,
         @NotBlank(message = "HumanTowerPositionsConfigDTO.position is mandatory")
         var position:Position,
