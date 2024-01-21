@@ -1,2 +1,2 @@
 # gestiomalfargatsBack
-A Restful API to manage Tower human and the assistance of their participants
+A Restful API to manage Human Towers and the assistance of their participants
