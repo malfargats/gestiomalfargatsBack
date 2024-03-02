@@ -25,7 +25,10 @@ class CastleService(val castleRepository: CastleRepository) {
     fun updateCastle(castleDto: CastleDTO, id: Long): CastleDTO {
         val existingCastle:Optional<Castle> = castleRepository.findById(id)
         if(existingCastle.isPresent){
-            return existingCastle.get().toDTO()
+            val castle:Castle=existingCastle.get();
+            castle.name=castleDto.name;
+            castle.description=castleDto.description;
+            return castleRepository.save(castle).toDTO()
 
         }else{
             throw CastleNotFoundException("No s'ha trobat castle amb id $id")

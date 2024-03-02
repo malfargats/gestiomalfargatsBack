@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/v1/castles")
+@RequestMapping("/api/v1/castles")
 @Validated
 class CastleController(val castleService: CastleService) {
     @PostMapping
