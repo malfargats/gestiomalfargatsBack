@@ -1,6 +1,7 @@
 package com.malfargats.gestio.service
 import com.malfargats.gestio.dto.RolDTO
 import com.malfargats.gestio.entity.Rol
+import com.malfargats.gestio.exceptions.RolException
 import com.malfargats.gestio.repository.RolRepository
 import org.springframework.stereotype.Service
 import java.util.Optional
@@ -8,32 +9,23 @@ import javax.management.relation.RoleInfoNotFoundException
 
 @Service
 class RolService(val rolRepository: RolRepository) {
-    fun getAllRols() : List<RolDTO>{
-        return rolRepository.findAll().map {
-            it.toDTO()
-        }
+    fun getAllRols() : List<Rol>{
+        return rolRepository.findAll().toList();
     }
 
-    fun getRolById(id: Long): RolDTO {
-        val existingRol=rolRepository.findById(id);
-        if (existingRol.isPresent){
-            return existingRol.get().toDTO()
-        }else{
-            throw RoleInfoNotFoundException("Not found Rol")
-        }
+    fun getRolById(id: Long): Rol {
+        return rolRepository.findById(id).orElseThrow{RolException("Role not found with id $id")}
     }
 
-    fun createRol(rolDTO: RolDTO): RolDTO {
-        val rol:Rol=rolDTO.toRol()
-        val savedRol=rolRepository.save(rol);
-        return savedRol.toDTO();
+    fun createRol(rol: Rol): Rol {
+
+        return rolRepository.save(rol);
+
     }
-    fun updateRol(id:Long,rolDTO: RolDTO):RolDTO{
-        val existingRol:Optional<Rol> = rolRepository.findById(id);
-        if(!existingRol.isPresent) throw  RoleInfoNotFoundException("Not found")
-        val rol:Rol = existingRol.get();
-        rol.name=rolDTO.name;
-        return rolRepository.save(rol).toDTO();
+    fun updateRol(id:Long,rol: Rol):Rol{
+        val existingRol=getRolById(id);
+        existingRol.name=rol.name;
+        return rolRepository.save(existingRol);
 
     }
     fun deleteRol(id: Long){
