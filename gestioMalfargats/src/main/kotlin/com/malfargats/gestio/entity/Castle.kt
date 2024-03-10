@@ -7,13 +7,11 @@ import jakarta.persistence.*
 @Table(name = "Castle")
 data class Castle(
         @Id
-        @GeneratedValue(strategy = GenerationType.AUTO)
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
         var id: Long?,
         var name: String,
-        var description: String
+        var description: String,
+        @OneToMany(mappedBy = "castle", cascade = [CascadeType.ALL], orphanRemoval = true)
+        val positions: List<Position> = mutableListOf()
 ){
-        fun toDTO():CastleDTO{
-                return CastleDTO(this.id,this.name,this.description)
-
-        }
 }

@@ -6,9 +6,10 @@ import com.malfargats.gestio.service.CastleService
 import org.springframework.stereotype.Component
 
 @Component
-class CastleMapper(private val castleService: CastleService) {
+class CastleMapper(private val castleService: CastleService,private val positionMapper: PositionMapper) {
     fun toDTO(castle: Castle):CastleDTO{
-        return  CastleDTO(id=castle.id,name=castle.name, description = castle.description)
+        val positions=castle.positions.map { positionMapper.toDTO(it) }
+        return  CastleDTO(id=castle.id,name=castle.name, description = castle.description,positions=positions)
     }
     fun toEntity(castle: CastleDTO):Castle{
         return Castle(id=castle.id,name=castle.name, description = castle.description)

@@ -6,7 +6,7 @@ import jakarta.persistence.*
 @Table(name = "Member")
 data class Member(
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id:Long,
     val name:String,
     val age:Int,

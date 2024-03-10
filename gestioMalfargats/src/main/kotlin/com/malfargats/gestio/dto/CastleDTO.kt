@@ -9,6 +9,7 @@ data class CastleDTO (
         var name: String,
         @NotBlank(message = "CastleDTO.height is mandatory")
         var description:String,
+        val positions:List<PositionDTO> = mutableListOf()
 
 ){
        fun toCastle():Castle{
